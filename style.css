@@ -1,0 +1,132 @@
+:root {
+    --green: #8bc34a;
+    --red: #f44336;
+    --brown: #5d4037;
+
+    --secondaryLE: #ffffa4;
+    --secondaryL: #ffff72;
+    --secondaryM: #ffeb3b;
+    --secondaryD: #c8b900;
+
+    --primaryL: #ffc947;
+    --primaryM: #ff9800;
+    --primaryD: #c66900;
+
+    --white: #eceff1;
+    --whiteD: #babdbe;
+    --darkL: #61656d;
+    --darkM: #373b42;
+    --darkD: #11151b;
+}
+
+::selection {
+    color: var(--darkD);
+    background: var(--secondaryL);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Merriweather Sans', serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    margin: 0 3vw;
+    gap: 3vw;
+    background-color: var(--darkM);
+}
+
+#fifteen {
+    min-width: fit-content;
+    height: 100vh;
+    top: 25vh;
+    padding-top: 25vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: repeat(4, calc(50vh / 4));
+}
+
+#fifteen button {
+    font-size: 30px;
+    width: calc(50vh / 4);
+    height: calc(50vh / 4);
+}
+
+#fifteen button.cell {
+    color: var(--secondaryLE);
+    background-color: var(--darkD);
+}
+
+#fifteen button.empty {
+    color: var(--darkD);
+    background-color: var(--whiteD);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+#panel {
+    width: fit-content;
+    height: 100vh;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#panel button {
+    width: 8vw;
+    min-width: fit-content;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+}
+
+#panel label {
+    display: block;
+    width: 10vw;
+    min-width: fit-content;
+    height: fit-content;
+    background-color: var(--primaryM);
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+    user-select: none;
+}
+
+#panel label input {
+    margin: 5px;
+}
+
+#panel label textarea {
+    margin: 5px;
+    resize: none;
+    height: 2.5pc;
+    text-align: center;
+    font-size: 1.5pc;
+}
+
+#experiments_num, #moves_num {
+    width: 100px;
+}
+
+#load_hash {
+    width: 15vw;
+}
+
+
+#info {
+    width: 60vw;
+    height: 90vh;
+    background-color: var(--primaryM);
+    padding: 10px;
+    margin: auto;
+    white-space: pre;
+    overflow-y: auto;
+}
