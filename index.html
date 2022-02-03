@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Fifteen solver</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Merriweather+Sans'>
-    <link href='style.css' rel='stylesheet'>
-</head>
-<body>
-    <div id='fifteen'></div>
-    <div id='panel'>
-        <button onclick='random()'>RANDOM</button>
-        <label>Moves:<textarea id='moves_num'></textarea></label>
-        <button onclick='random2()'>MOVE RANDOM</button>
-        <button onclick='heuristics()'>HEURISTICS</button>
-        <label id='heuristics'></label>
-        <button onclick='solve()'>SOLVE</button>
-        <label for='log_all'><input id='log_all' type='checkbox'>Log all states</label>
-        <label for='log_solution'><input id='log_solution' type='checkbox'>Log solution boards</label>
-        <label>Iterations:<textarea id='experiments_num'></textarea></label>
-        <button onclick='experiment()'>EXPERIMENT</button>
-        <label>Hash:<textarea id='load_hash'>51739264dabce08f</textarea></label>
-        <button onclick='loadHash()'>LOAD BOARD</button>
-        <button onclick='autoSolve()'>AUTO SOLVE</button>
-    </div>
-    <label id='info'></label>
-</body>
-<script src='./js/priority.js'></script>
-<script src='./js/logging.js'></script>
-<script src='./js/script.js'></script>
-<script src='./js/experiment.js'></script>
-<script src='./js/game.js'></script>
-<script src='./js/boardControl.js'></script>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Fifteen solver</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather+Sans" />
+        <link href="scss/style.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="fifteen"></div>
+        <div id="panel">
+            <button onclick="random()">RANDOM</button>
+            <label>Moves:<textarea id="moves_num"></textarea></label>
+            <button onclick="random2()">MOVE RANDOM</button>
+            <button onclick="heuristics()">HEURISTICS</button>
+            <label id="heuristics"></label>
+            <button onclick="solve()">SOLVE</button>
+            <label for="log_all"><input id="log_all" type="checkbox" />Log all states</label>
+            <label for="log_solution"><input id="log_solution" type="checkbox" />Log solution boards</label>
+            <label>Iterations:<textarea id="experiments_num"></textarea></label>
+            <button onclick="experiment()">EXPERIMENT</button>
+            <label>Hash:<textarea id="load_hash">51739264dabce08f</textarea></label>
+            <button onclick="loadHash()">LOAD BOARD</button>
+            <button onclick="autoSolve()">AUTO SOLVE</button>
+        </div>
+        <label id="info"></label>
+    </body>
+    <script src="js/priority.js"></script>
+    <script src="js/logging.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/experiment.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/boardControl.js"></script>
 </html>

@@ -1,13 +1,12 @@
 const [ManhattanHeuristic, ModifiedHeuristic, randomBoardTiles] = require('../js/maths')
 const aStarSearchQuietWhile = require('../js/experiment')
 
-
 const autoExperiment = (start, end, step, iterations) => {
-    for (let j = start; j <= end; j+=step) {
+    for (let j = start; j <= end; j += step) {
         let results = []
         for (let i = 0; i < iterations; ++i) {
             let [current_board_tiles, zero] = randomBoardTiles(j)
-            const current_board = {tiles: current_board_tiles, zero_index: zero, parent_zero_index: null, h_score: 100, g_score: 0, solution_path: []}
+            const current_board = { tiles: current_board_tiles, zero_index: zero, parent_zero_index: null, h_score: 100, g_score: 0, solution_path: [] }
             let seed = ('0' + current_board_tiles.toString(16)).slice(-16)
 
             console.log('modified (' + j + ',' + i + ') - ' + seed)
@@ -22,7 +21,12 @@ const autoExperiment = (start, end, step, iterations) => {
         }
 
         console.log('\nseed\t\t     manhattan    sol   modified  sol   diff')
-        let manhattan_max = 0, modified_max = 0, manhattan_min = Number.MAX_SAFE_INTEGER, modified_min = Number.MAX_SAFE_INTEGER, manhattan_avg = 0, modified_avg = 0
+        let manhattan_max = 0,
+            modified_max = 0,
+            manhattan_min = Number.MAX_SAFE_INTEGER,
+            modified_min = Number.MAX_SAFE_INTEGER,
+            manhattan_avg = 0,
+            modified_avg = 0
         for (const [seed, manhattan, solution, modified, solution2] of results) {
             if (manhattan < manhattan_min && manhattan !== modified) manhattan_min = manhattan
             if (manhattan > manhattan_max) manhattan_max = manhattan
@@ -39,8 +43,8 @@ const autoExperiment = (start, end, step, iterations) => {
             if (modified === manhattan) alg_col = alg2_col = '  '
             console.log(seed + '\t' + alg_col + manhattan + '\t' + solution_col + solution + '\t' + alg2_col + modified + '\t' + solution2_col + solution2 + '\t' + Math.abs(manhattan - modified))
         }
-        console.log('Manhattan :    avg ' + (manhattan_avg / results.length) + ';\tmin    ' + manhattan_min + ';\tmax ' + manhattan_max)
-        console.log('Modified  :    avg ' + (modified_avg / results.length) + ';\tmin    ' + modified_min + ';\tmax ' + modified_max)
+        console.log('Manhattan :    avg ' + manhattan_avg / results.length + ';\tmin    ' + manhattan_min + ';\tmax ' + manhattan_max)
+        console.log('Modified  :    avg ' + modified_avg / results.length + ';\tmin    ' + modified_min + ';\tmax ' + modified_max)
     }
 }
-autoExperiment(20,20,10, 100)
+autoExperiment(20, 20, 10, 100)

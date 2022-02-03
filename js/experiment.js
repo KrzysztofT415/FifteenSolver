@@ -1,5 +1,5 @@
 if (typeof window === 'undefined') {
-    [_, _, _, getNeighbours, swapTiles] = require('./script')
+    ;[_, _, _, getNeighbours, swapTiles] = require('./script')
     PriorityQueue = require('./priority')
 }
 
@@ -17,11 +17,12 @@ const end = results => {
     info.innerText += '\n'
 }
 const runIterations = iterations => {
-    let results = {manhattan: [], modified: []}, results_num = 0
+    let results = { manhattan: [], modified: [] },
+        results_num = 0
     // let tests = [BigInt('0x123456f7ad0b9ce8'), BigInt('0x12345768fdab9ec0')]
     for (let i = 0; i < iterations; ++i) {
         let current_board_tiles = randomBoardTiles()
-        const current_board = {tiles: current_board_tiles, zero_index: 15, parent_zero_index: null, h_score: 100, g_score: 0, solution_path: []}
+        const current_board = { tiles: current_board_tiles, zero_index: 15, parent_zero_index: null, h_score: 100, g_score: 0, solution_path: [] }
 
         aStarSearchQuiet(current_board, ManhattanHeuristic, value => {
             results.manhattan = [...results.manhattan, value]
@@ -37,7 +38,6 @@ const runIterations = iterations => {
         })
     }
 }
-
 
 const aStarSearchQuiet = (board, heuristic, callback) => {
     let queue = new PriorityQueue(board)
@@ -62,11 +62,7 @@ const aStarSearchQuiet = (board, heuristic, callback) => {
             let next_state_tiles = swapTiles(current_state.tiles, BigInt(current_state.zero_index), BigInt(neighbour))
 
             if (!already_seen[next_state_tiles]) {
-                let next_state = {tiles: next_state_tiles,
-                    zero_index: neighbour,
-                    h_score: heuristic(next_state_tiles),
-                    g_score: current_state.g_score + 1,
-                    solution_path: [...JSON.parse(JSON.stringify(current_state.solution_path)), current_state.zero_index]}
+                let next_state = { tiles: next_state_tiles, zero_index: neighbour, h_score: heuristic(next_state_tiles), g_score: current_state.g_score + 1, solution_path: [...JSON.parse(JSON.stringify(current_state.solution_path)), current_state.zero_index] }
                 queue.enqueue(next_state, next_state.h_score + next_state.g_score * 2)
             }
         }
@@ -81,8 +77,7 @@ const aStarSearchQuietWhile = (board, heuristic) => {
     while (!queue.isEmpty()) {
         let current_state = queue.pop().element
 
-        if (current_state.h_score === 0)
-            return [Object.keys(already_seen).length, current_state.solution_path.length]
+        if (current_state.h_score === 0) return [Object.keys(already_seen).length, current_state.solution_path.length]
 
         already_seen[current_state.tiles] = true
 
@@ -91,11 +86,7 @@ const aStarSearchQuietWhile = (board, heuristic) => {
             let next_state_tiles = swapTiles(current_state.tiles, BigInt(current_state.zero_index), BigInt(neighbour))
 
             if (!already_seen[next_state_tiles]) {
-                let next_state = {tiles: next_state_tiles,
-                    zero_index: neighbour,
-                    h_score: heuristic(next_state_tiles),
-                    g_score: current_state.g_score + 1,
-                    solution_path: [...JSON.parse(JSON.stringify(current_state.solution_path)), current_state.zero_index]}
+                let next_state = { tiles: next_state_tiles, zero_index: neighbour, h_score: heuristic(next_state_tiles), g_score: current_state.g_score + 1, solution_path: [...JSON.parse(JSON.stringify(current_state.solution_path)), current_state.zero_index] }
                 queue.enqueue(next_state, next_state.h_score + next_state.g_score * 2)
             }
         }

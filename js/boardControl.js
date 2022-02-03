@@ -12,7 +12,6 @@ function* swapper(array) {
 }
 const generator = swapper(heuristics_array)
 
-
 let current_heuristic
 const heuristics = _ => {
     current_heuristic = generator.next()
@@ -42,7 +41,7 @@ const cellClick = index => {
 const autoClick = direction => {
     const board = loadBoard()
     let neighbour = board.zero_index + direction
-    if (neighbour < 0 || neighbour >= 16 || Math.abs(neighbour % 4 - board.zero_index % 4) > 1) return 0
+    if (neighbour < 0 || neighbour >= 16 || Math.abs((neighbour % 4) - (board.zero_index % 4)) > 1) return 0
     let empty = document.getElementById(board.zero_index + 'c')
     let second = document.getElementById(board.zero_index + direction + 'c')
     swapCells(empty, second)
@@ -58,8 +57,7 @@ const random = () => {
     let board = document.getElementsByClassName('cell')
     do {
         board = [...board].sort(() => Math.random() - 0.5)
-        for (let i = 0; i < 15; ++i)
-            board[i].innerText = (i + 1).toString()
+        for (let i = 0; i < 15; ++i) board[i].innerText = (i + 1).toString()
     } while (checkBoardParity(loadBoard().tiles) & 1)
 }
 const random2 = () => {
@@ -87,10 +85,9 @@ const autoSolve = () => {
     for (let i = 1; i < solution.length; i++) {
         let empty = document.getElementById(solution[i - 1] + 'c')
         let second = document.getElementById(solution[i] + 'c')
-        ;((i) => setTimeout(() => swapCells(empty, second), 500 + (500 * i)))(i)
+        ;(i => setTimeout(() => swapCells(empty, second), 500 + 500 * i))(i)
     }
 }
-
 
 window.onload = () => {
     const fifteen = document.getElementById('fifteen')
@@ -108,18 +105,26 @@ window.onload = () => {
     last.classList.replace('cell', 'empty')
     last.innerText = '-'
 
-
     const handleKeys = e => {
         switch (e.code) {
-            case 'ArrowUp': return autoClick(directions_enum.up)
-            case 'ArrowDown': return autoClick(directions_enum.down)
-            case 'ArrowLeft': return autoClick(directions_enum.left)
-            case 'ArrowRight': return autoClick(directions_enum.right)
-            case 'KeyS': return solve()
-            case 'KeyH': return heuristics()
-            case 'KeyR': return random()
-            case 'KeyE': return experiment()
-            case 'KeyM': return random2()
+            case 'ArrowUp':
+                return autoClick(directions_enum.up)
+            case 'ArrowDown':
+                return autoClick(directions_enum.down)
+            case 'ArrowLeft':
+                return autoClick(directions_enum.left)
+            case 'ArrowRight':
+                return autoClick(directions_enum.right)
+            case 'KeyS':
+                return solve()
+            case 'KeyH':
+                return heuristics()
+            case 'KeyR':
+                return random()
+            case 'KeyE':
+                return experiment()
+            case 'KeyM':
+                return random2()
         }
     }
     document.addEventListener('keydown', handleKeys)

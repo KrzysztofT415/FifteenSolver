@@ -1,20 +1,19 @@
 class QElement {
     constructor(element, priority) {
-        this.element = element;
-        this.priority = priority;
+        this.element = element
+        this.priority = priority
     }
 }
 
 class PriorityQueue {
     constructor(...args) {
         this.items = []
-        for (const arg of args)
-            this.enqueue(arg, 0)
+        for (const arg of args) this.enqueue(arg, 0)
     }
 
     enqueue(element, priority) {
-        let qElement = new QElement(element, priority);
-        let contain = false;
+        let qElement = new QElement(element, priority)
+        let contain = false
 
         for (let i = 0; i < this.items.length; i++) {
             if (this.items[i].priority > qElement.priority) {
@@ -44,6 +43,8 @@ class PriorityQueue {
         if (this.isEmpty()) return null
         return this.items[this.items.length - 1]
     }
-    isEmpty() { return this.items.length === 0 }
+    isEmpty() {
+        return this.items.length === 0
+    }
 }
 if (typeof window === 'undefined') module.exports = PriorityQueue

@@ -1,41 +1,10 @@
-:root {
-    --green: #8bc34a;
-    --red: #f44336;
-    --brown: #5d4037;
-
-    --secondaryLE: #ffffa4;
-    --secondaryL: #ffff72;
-    --secondaryM: #ffeb3b;
-    --secondaryD: #c8b900;
-
-    --primaryL: #ffc947;
-    --primaryM: #ff9800;
-    --primaryD: #c66900;
-
-    --white: #eceff1;
-    --whiteD: #babdbe;
-    --darkL: #61656d;
-    --darkM: #373b42;
-    --darkD: #11151b;
-}
-
-::selection {
-    color: var(--darkD);
-    background: var(--secondaryL);
-}
-
-* {
-    padding: 0;
-    margin: 0;
-    font-family: 'Merriweather Sans', serif;
-    box-sizing: border-box;
-}
+@import '/home/krzysiek/universal/_default_scss_template.scss';
 
 body {
     display: flex;
     margin: 0 3vw;
     gap: 3vw;
-    background-color: var(--darkM);
+    background-color: $darkM;
 }
 
 #fifteen {
@@ -57,17 +26,16 @@ body {
 }
 
 #fifteen button.cell {
-    color: var(--secondaryLE);
-    background-color: var(--darkD);
+    color: $secondaryLE;
+    background-color: $darkD;
 }
 
 #fifteen button.empty {
-    color: var(--darkD);
-    background-color: var(--whiteD);
+    color: $darkD;
+    background-color: $whiteD;
     cursor: not-allowed;
     pointer-events: none;
 }
-
 
 #panel {
     width: fit-content;
@@ -93,7 +61,7 @@ body {
     width: 10vw;
     min-width: fit-content;
     height: fit-content;
-    background-color: var(--primaryM);
+    background-color: $primaryM;
     text-align: center;
     padding: 10px;
     margin: 5px;
@@ -112,7 +80,8 @@ body {
     font-size: 1.5pc;
 }
 
-#experiments_num, #moves_num {
+#experiments_num,
+#moves_num {
     width: 100px;
 }
 
@@ -120,11 +89,10 @@ body {
     width: 15vw;
 }
 
-
 #info {
     width: 60vw;
     height: 90vh;
-    background-color: var(--primaryM);
+    background-color: $primaryM;
     padding: 10px;
     margin: auto;
     white-space: pre;
